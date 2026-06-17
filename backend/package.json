@@ -1,0 +1,41 @@
+{
+  "name": "modulo-requerimientos-backend",
+  "version": "1.0.0",
+  "description": "Modulo web para la gestion y automatizacion de requerimientos de proyectos de software - Dexter LATAM SAS (Fase 3 / Objetivo 3)",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "db:init": "node src/db/initDb.js",
+    "db:seed": "node src/db/seedDb.js",
+    "db:reset": "node src/db/initDb.js && node src/db/seedDb.js",
+    "test": "cross-env NODE_ENV=test jest --runInBand --forceExit",
+    "test:watch": "cross-env NODE_ENV=test jest --runInBand --watch"
+  },
+  "keywords": [
+    "requerimientos",
+    "trazabilidad",
+    "kanban",
+    "express",
+    "postgresql"
+  ],
+  "author": "Andres Torres Cadena",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.9",
+    "supertest": "^7.0.0"
+  }
+}
