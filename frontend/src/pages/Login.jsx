@@ -61,13 +61,18 @@ export default function Login() {
           {cargando ? 'Ingresando...' : 'Iniciar sesion'}
         </button>
 
-        <div className="demo">
-          <strong>Usuarios de demostracion</strong> (clave <code>Dexter2026*</code>):<br />
-          <code>lider@dexterlatam.com</code> - lider<br />
-          <code>jessica@dexterlatam.com</code> - registrador<br />
-          <code>dev@dexterlatam.com</code> - desarrollador<br />
-          <code>qa@dexterlatam.com</code> - validador
-        </div>
+        {/* Ayuda de credenciales solo para desarrollo local: Vite elimina este
+            bloque del build de produccion (import.meta.env.DEV === false),
+            de modo que NO se muestra en el sitio desplegado. */}
+        {import.meta.env.DEV && (
+          <div className="demo">
+            <strong>Usuarios de demostracion</strong> (clave <code>Dexter2026*</code>):<br />
+            <code>lider@dexterlatam.com</code> - lider<br />
+            <code>jessica@dexterlatam.com</code> - registrador<br />
+            <code>dev@dexterlatam.com</code> - desarrollador<br />
+            <code>qa@dexterlatam.com</code> - validador
+          </div>
+        )}
       </form>
     </div>
   );
