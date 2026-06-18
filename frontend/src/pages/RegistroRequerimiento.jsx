@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api, { mensajeError } from '../api/client';
 import { cargarCatalogos } from '../api/catalogos';
+import { capitalizar } from '../utils/format';
 
 /**
  * Pantalla de registro de requerimiento (Figura 5b). Es la mas critica del
@@ -96,7 +97,7 @@ export default function RegistroRequerimiento() {
   return (
     <div>
       <h1>Registrar requerimiento</h1>
-      <p className="subtitulo">Captura la informacion minima para conservar el contexto desde el inicio (RF-03, RN-02).</p>
+      <p className="subtitulo">Captura la informacion minima para conservar el contexto desde el inicio.</p>
 
       {error && <div className="alerta error">{error}</div>}
 
@@ -128,7 +129,7 @@ export default function RegistroRequerimiento() {
             placeholder="Describa la solicitud con el mayor detalle posible..."
             required
           />
-          <div className="ayuda">Al terminar de escribir, el sistema sugerira un tipo y una prioridad (RF-14).</div>
+          <div className="ayuda">Al terminar de escribir, el sistema sugerira un tipo y una prioridad.</div>
         </div>
 
         {(cargandoSug || sugerencia) && (
@@ -139,8 +140,8 @@ export default function RegistroRequerimiento() {
             ) : (
               <>
                 <div>
-                  Tipo sugerido: <strong>{sugerencia.tipo_sugerido}</strong> &nbsp;|&nbsp;
-                  Prioridad sugerida: <strong>{sugerencia.prioridad_sugerida}</strong>
+                  Tipo sugerido: <strong>{capitalizar(sugerencia.tipo_sugerido)}</strong> &nbsp;|&nbsp;
+                  Prioridad sugerida: <strong>{capitalizar(sugerencia.prioridad_sugerida)}</strong>
                 </div>
                 <div className="ayuda" style={{ marginTop: 4 }}>{sugerencia.motivo}</div>
                 <button type="button" className="btn secundario pequeno mt" onClick={aplicarSugerencia}>

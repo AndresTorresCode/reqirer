@@ -4,6 +4,7 @@ import api, { mensajeError } from '../api/client';
 import { cargarCatalogos } from '../api/catalogos';
 import { useAuth } from '../context/AuthContext';
 import { BadgePrioridad, BadgeEstado, BadgeTipo } from '../components/Badges';
+import { capitalizar } from '../utils/format';
 
 /**
  * Pantalla de detalle, historial y cierre (Figura 5e). Combina en una sola
@@ -154,8 +155,8 @@ export default function DetalleRequerimiento() {
                 {esCierre && (
                   <div className="campo">
                     <label>Evidencia de cierre<span className="obligatorio">*</span></label>
-                    <textarea value={evidencia} onChange={(e) => setEvidencia(e.target.value)} placeholder="Validacion funcional, prueba o confirmacion (RN-10)" />
-                    <div className="ayuda">El cierre exige evidencia o validacion funcional registrada (RN-10).</div>
+                    <textarea value={evidencia} onChange={(e) => setEvidencia(e.target.value)} placeholder="Validacion funcional, prueba o confirmacion" />
+                    <div className="ayuda">El cierre exige evidencia o validacion funcional registrada.</div>
                   </div>
                 )}
                 <button className="btn" disabled={procesando} onClick={cambiarEstado}>
@@ -171,7 +172,7 @@ export default function DetalleRequerimiento() {
               <h2>Gestion (lider)</h2>
               <div className="grid-2">
                 <div className="campo">
-                  <label>Cambiar prioridad (RF-05)</label>
+                  <label>Cambiar prioridad</label>
                   <div className="acciones-fila">
                     <select value={nuevaPrioridad} onChange={(e) => setNuevaPrioridad(e.target.value)}>
                       {catalogos.prioridades.map((p) => <option key={p.id_prioridad} value={p.codigo}>{p.nombre_prioridad}</option>)}
@@ -183,7 +184,7 @@ export default function DetalleRequerimiento() {
                   </div>
                 </div>
                 <div className="campo">
-                  <label>Asignar responsable (RF-06)</label>
+                  <label>Asignar responsable</label>
                   <div className="acciones-fila">
                     <select value={nuevoResp} onChange={(e) => setNuevoResp(e.target.value)}>
                       <option value="">Sin asignar</option>
@@ -201,7 +202,7 @@ export default function DetalleRequerimiento() {
 
           {/* Observaciones (RF-12) */}
           <div className="panel">
-            <h2>Agregar observacion de seguimiento (RF-12)</h2>
+            <h2>Agregar observacion de seguimiento</h2>
             <div className="campo">
               <textarea value={nuevaObs} onChange={(e) => setNuevaObs(e.target.value)} placeholder="Novedad, decision o avance..." />
             </div>
@@ -216,9 +217,9 @@ export default function DetalleRequerimiento() {
         <div>
           {req.sugerencia && (
             <div className="panel">
-              <h2>Sugerencia inicial (RF-14)</h2>
+              <h2>Sugerencia inicial</h2>
               <p style={{ margin: '0 0 6px' }}>
-                Tipo: <strong>{req.sugerencia.tipo_sugerido}</strong> | Prioridad: <strong>{req.sugerencia.prioridad_sugerida}</strong>
+                Tipo: <strong>{capitalizar(req.sugerencia.tipo_sugerido)}</strong> | Prioridad: <strong>{capitalizar(req.sugerencia.prioridad_sugerida)}</strong>
               </p>
               <p className="ayuda">{req.sugerencia.motivo}</p>
               <p className="ayuda">Aceptada por el usuario: <strong>{req.sugerencia.aceptada ? 'Si' : 'No'}</strong></p>
@@ -226,7 +227,7 @@ export default function DetalleRequerimiento() {
           )}
 
           <div className="panel">
-            <h2>Historial de cambios (RF-08)</h2>
+            <h2>Historial de cambios</h2>
             {req.historial.length === 0 ? (
               <p className="vacio">Sin movimientos.</p>
             ) : (
@@ -268,7 +269,7 @@ export default function DetalleRequerimiento() {
             ) : (
               req.evidencias.map((e) => (
                 <div key={e.id_evidencia} className="dato">
-                  <div className="val"><span className="badge tipo">{e.tipo}</span> {e.descripcion}</div>
+                  <div className="val"><span className="badge tipo">{capitalizar(e.tipo)}</span> {e.descripcion}</div>
                   <div className="fecha-h">{new Date(e.fecha).toLocaleString('es-CO')}</div>
                 </div>
               ))

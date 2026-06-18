@@ -43,7 +43,7 @@ export default function Tablero() {
       <div className="barra-superior">
         <div>
           <h1>Tablero de seguimiento</h1>
-          <p className="subtitulo">Requerimientos por estado, enfoque Kanban (RF-10).</p>
+          <p className="subtitulo">Requerimientos organizados por su estado de avance.</p>
         </div>
         <div className="campo" style={{ minWidth: 240, marginBottom: 0 }}>
           <label>Filtrar por proyecto</label>
@@ -71,7 +71,15 @@ export default function Tablero() {
                   <div className="ayuda" style={{ textAlign: 'center', padding: 8 }}>Sin tarjetas</div>
                 ) : (
                   col.requerimientos.map((r) => (
-                    <div className="tarjeta" key={r.id_requerimiento} onClick={() => navigate(`/requerimientos/${r.id_requerimiento}`)}>
+                    <div
+                      className="tarjeta"
+                      key={r.id_requerimiento}
+                      onClick={() => navigate(`/requerimientos/${r.id_requerimiento}`)}
+                      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate(`/requerimientos/${r.id_requerimiento}`); } }}
+                      tabIndex={0}
+                      role="button"
+                      aria-label={`Ver detalle del requerimiento ${r.codigo}`}
+                    >
                       <div className="codigo">{r.codigo}</div>
                       <div className="desc">{r.descripcion.length > 70 ? `${r.descripcion.slice(0, 70)}...` : r.descripcion}</div>
                       <div className="meta">

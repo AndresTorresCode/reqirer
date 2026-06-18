@@ -86,7 +86,7 @@ function sugerir(descripcion, opciones = {}) {
   return {
     tipo_sugerido: tipo,
     prioridad_sugerida: prioridad,
-    motivo: `Sugerencia por reglas: ${motivos.join('; ')}. Revisable por el usuario (RN-11).`,
+    motivo: `Sugerencia automatica a partir del texto: ${motivos.join('; ')}. Puedes ajustarla si no corresponde.`,
   };
 }
 

@@ -53,7 +53,7 @@ export default function Proyectos() {
       <div className="barra-superior">
         <div>
           <h1>Proyectos</h1>
-          <p className="subtitulo">Contenedor de los requerimientos por cliente o iniciativa (RF-01, RF-02).</p>
+          <p className="subtitulo">Agrupa los requerimientos por cliente o iniciativa.</p>
         </div>
         {tieneRol('lider') && (
           <button className="btn" onClick={() => setMostrarForm((v) => !v)}>
@@ -91,7 +91,7 @@ export default function Proyectos() {
               />
               Cliente con contrato de soporte prioritario
             </label>
-            <div className="ayuda">Si se marca, la sugerencia automatica elevara la prioridad de sus requerimientos (RF-14).</div>
+            <div className="ayuda">Si se marca, la sugerencia automatica elevara la prioridad de sus requerimientos.</div>
           </div>
           <button className="btn exito" disabled={guardando}>{guardando ? 'Guardando...' : 'Guardar proyecto'}</button>
         </form>
@@ -108,6 +108,7 @@ export default function Proyectos() {
         ) : proyectos.length === 0 ? (
           <p className="vacio">No hay proyectos registrados.</p>
         ) : (
+          <div className="tabla-scroll">
           <table className="tabla">
             <thead>
               <tr>
@@ -130,6 +131,7 @@ export default function Proyectos() {
               ))}
             </tbody>
           </table>
+          </div>
         )}
       </div>
     </div>

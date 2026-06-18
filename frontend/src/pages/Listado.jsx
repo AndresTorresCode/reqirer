@@ -62,7 +62,7 @@ export default function Listado() {
   return (
     <div>
       <h1>Listado de requerimientos</h1>
-      <p className="subtitulo">Consulta tabular con filtros combinables (RF-09, RF-11).</p>
+      <p className="subtitulo">Consulta en forma de tabla con filtros combinables.</p>
 
       {error && <div className="alerta error">{error}</div>}
 
@@ -117,6 +117,7 @@ export default function Listado() {
         ) : requerimientos.length === 0 ? (
           <p className="vacio">No se encontraron requerimientos con esos criterios.</p>
         ) : (
+          <div className="tabla-scroll">
           <table className="tabla">
             <thead>
               <tr>
@@ -131,7 +132,14 @@ export default function Listado() {
             </thead>
             <tbody>
               {requerimientos.map((r) => (
-                <tr key={r.id_requerimiento} onClick={() => navigate(`/requerimientos/${r.id_requerimiento}`)}>
+                <tr
+                  key={r.id_requerimiento}
+                  onClick={() => navigate(`/requerimientos/${r.id_requerimiento}`)}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate(`/requerimientos/${r.id_requerimiento}`); } }}
+                  tabIndex={0}
+                  role="button"
+                  aria-label={`Ver detalle del requerimiento ${r.codigo}`}
+                >
                   <td><strong>{r.codigo}</strong></td>
                   <td>{r.descripcion.length > 60 ? `${r.descripcion.slice(0, 60)}...` : r.descripcion}</td>
                   <td>{r.proyecto_nombre}</td>
@@ -143,6 +151,7 @@ export default function Listado() {
               ))}
             </tbody>
           </table>
+          </div>
         )}
         <p className="ayuda mt">{requerimientos.length} requerimiento(s). Haga clic en una fila para ver el detalle.</p>
       </div>
