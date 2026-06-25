@@ -13,6 +13,19 @@ Implementa los requerimientos funcionales **RF-01 a RF-14**, los no funcionales
 **RNF-01 a RNF-09** y las reglas de negocio **RN-01 a RN-12** definidas en las
 Fases 1 y 2 del documento.
 
+## Aplicacion en linea
+
+El modulo esta desplegado y disponible para evaluacion en:
+
+**https://reqirer-production.up.railway.app/**
+
+El codigo fuente esta disponible en el repositorio:
+
+**https://github.com/AndresTorresCode/reqirer**
+
+El acceso se realiza con las cuentas de demostracion (ver seccion *Usuarios de
+demostracion*), todas con la contrasena `Dexter2026*`.
+
 ## Arquitectura
 
 Aplicacion web de tres capas, segun lo propuesto en el objetivo principal:
